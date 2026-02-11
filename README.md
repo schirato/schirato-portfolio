@@ -1,36 +1,153 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Schirato Portfolio
 
-## Getting Started
+Portfólio profissional desenvolvido com Next.js 14+, TypeScript, TailwindCSS e Framer Motion.
 
-First, run the development server:
+---
+
+## Stack
+
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **TailwindCSS v4**
+- **Framer Motion** — animações e transições
+- **Lucide React** — ícones
+- **React Hook Form + Zod** — validação de formulário
+- **Resend** — envio de emails do formulário de contato
+
+---
+
+## Setup
+
+### 1. Clone e instale
+
+```bash
+git clone <repo-url>
+cd schirato-portfolio
+npm install
+```
+
+### 2. Configure variáveis de ambiente
+
+Copie o arquivo de exemplo e preencha com suas credenciais:
+
+```bash
+cp .env.example .env.local
+```
+
+Edite `.env.local`:
+
+| Variável           | Descrição                                     |
+| ------------------ | --------------------------------------------- |
+| `RESEND_API_KEY`   | Sua API Key do [Resend](https://resend.com)   |
+| `CONTACT_TO_EMAIL` | Email que receberá as mensagens do formulário |
+
+### 3. Rode em desenvolvimento
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Acesse [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### 4. Build para produção
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## Estrutura do Projeto
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```
+src/
+├── app/
+│   ├── api/contact/route.ts    # API Route para envio de email via Resend
+│   ├── globals.css             # Estilos globais + tema TailwindCSS
+│   ├── layout.tsx              # Layout raiz (fonte, metadata, SEO)
+│   └── page.tsx                # Página principal — compõe todas as seções
+├── components/
+│   ├── header/
+│   │   └── Header.tsx          # Header fixo com nav + mobile menu
+│   ├── sections/
+│   │   ├── Hero.tsx            # Hero com imagem de fundo + texto
+│   │   ├── About.tsx           # Seção "Sobre" com 2 colunas
+│   │   ├── SoftSkills.tsx      # Grid de soft skills + progress rings
+│   │   ├── Portfolio.tsx       # Grid de portfólio com filtro
+│   │   ├── QuoteBand.tsx       # Faixa de citação (Steve Jobs)
+│   │   ├── CtaBand.tsx         # CTA "Vamos trabalhar juntos"
+│   │   ├── Contact.tsx         # Formulário de contato
+│   │   └── Footer.tsx          # Rodapé com social links
+│   └── ui/
+│       ├── Button.tsx          # Botão reutilizável
+│       ├── Card.tsx            # Card animado
+│       ├── Container.tsx       # Wrapper de largura máxima
+│       ├── ProgressRing.tsx    # Anel de progresso SVG animado
+│       ├── SectionTitle.tsx    # Título de seção com ornamento
+│       └── Toast.tsx           # Notificação de sucesso/erro
+├── content/
+│   └── portfolio.ts            # Dados mock do portfólio
+└── lib/
+    ├── rateLimit.ts            # Rate limiting simples por IP
+    ├── resend.ts               # Cliente Resend
+    ├── schemas.ts              # Schemas Zod (validação)
+    └── utils.ts                # Utilitários (cn)
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## Como trocar imagens e textos
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Imagens do Portfólio
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Edite `src/content/portfolio.ts` — altere `imageUrl`, `title`, `category` e `href` de cada item.
+
+### Imagens de fundo (Hero, Quote)
+
+Edite os URLs diretamente nos componentes:
+
+- **Hero**: `src/components/sections/Hero.tsx` — propriedade `backgroundImage`
+- **Quote**: `src/components/sections/QuoteBand.tsx` — propriedade `backgroundImage`
+
+Para usar imagens locais, coloque-as em `public/images/` e referencie como `/images/nome.jpg`.
+
+### Textos da seção Sobre
+
+Edite as constantes `leftColumnText` e `rightColumnItems` em `src/components/sections/About.tsx`.
+
+### Soft Skills
+
+Edite o array `softSkills` em `src/components/sections/SoftSkills.tsx`.
+
+### Dados pessoais / Nome
+
+Procure por "Erik Schirato" ou "Schirato" nos componentes e altere conforme necessário.
+
+---
+
+## Comandos
+
+| Comando         | Descrição                            |
+| --------------- | ------------------------------------ |
+| `npm run dev`   | Inicia o servidor de desenvolvimento |
+| `npm run build` | Build de produção                    |
+| `npm start`     | Inicia o servidor de produção        |
+| `npm run lint`  | Roda o ESLint                        |
+
+---
+
+## Deploy
+
+O projeto é compatível com deploy direto na **Vercel**:
+
+1. Faça push para o GitHub
+2. Conecte o repositório na [Vercel](https://vercel.com)
+3. Configure as variáveis de ambiente (`RESEND_API_KEY`, `CONTACT_TO_EMAIL`)
+4. Deploy automático!
+
+---
+
+## Licença
+
+MIT

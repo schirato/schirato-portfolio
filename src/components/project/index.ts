@@ -1,0 +1,10 @@
+export { ProjectHero } from "./ProjectHero";
+export { ProjectContext } from "./ProjectContext";
+export { ProjectChallenge } from "./ProjectChallenge";
+export { ProjectSolution } from "./ProjectSolution";
+export { ProjectProcess } from "./ProjectProcess";
+export { ProjectTechStack } from "./ProjectTechStack";
+export { ProjectResults } from "./ProjectResults";
+export { ProjectRole } from "./ProjectRole";
+export { ProjectGallery } from "./ProjectGallery";
+export { ProjectCta } from "./ProjectCta";

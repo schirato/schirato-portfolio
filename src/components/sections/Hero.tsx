@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
+import { event as gaEvent } from "@/lib/gtag";
 
 export function Hero() {
   return (
@@ -60,6 +61,10 @@ export function Hero() {
             href="#portfolio"
             onClick={(e) => {
               e.preventDefault();
+              gaEvent("cta_click", {
+                section: "hero",
+                label: "conhecer_projetos",
+              });
               document
                 .querySelector("#portfolio")
                 ?.scrollIntoView({ behavior: "smooth" });
@@ -73,6 +78,10 @@ export function Hero() {
             href="#contato"
             onClick={(e) => {
               e.preventDefault();
+              gaEvent("cta_click", {
+                section: "hero",
+                label: "solicitar_orcamento",
+              });
               document
                 .querySelector("#contato")
                 ?.scrollIntoView({ behavior: "smooth" });

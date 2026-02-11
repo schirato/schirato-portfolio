@@ -5,6 +5,7 @@ import { Header } from "@/components/header/Header";
 import { Footer } from "@/components/sections/Footer";
 import { Container } from "@/components/ui/Container";
 import { ProjectsGrid } from "@/components/sections/ProjectsGrid";
+import { TrackedCtaLink } from "@/components/analytics/TrackedCtaLink";
 import { projectCases } from "@/content/projects";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://erikschirato.com";
@@ -133,13 +134,14 @@ export default function ProjetosPage() {
                 você precisa — sem compromisso.
               </p>
               <div className="mt-8">
-                <Link
+                <TrackedCtaLink
                   href="/#contato"
+                  label="iniciar_conversa"
+                  section="projetos_mid_cta"
                   className="inline-flex items-center gap-2 rounded bg-[#1DA9C2] px-6 py-3 text-sm font-semibold text-white transition-all hover:bg-[#1DA9C2]/90 hover:shadow-lg hover:shadow-[#1DA9C2]/20"
                 >
                   Iniciar conversa
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                </TrackedCtaLink>
               </div>
             </div>
           </Container>
@@ -161,13 +163,14 @@ export default function ProjetosPage() {
               </p>
               <div className="mx-auto mt-4 h-px w-16 bg-white/40" />
               <div className="mt-8">
-                <Link
+                <TrackedCtaLink
                   href="/#contato"
+                  label="fale_comigo"
+                  section="projetos_final_cta"
                   className="inline-flex items-center gap-2 bg-white px-8 py-3 text-sm font-semibold text-[#1DA9C2] transition-all hover:bg-white/90 hover:shadow-lg"
                 >
                   Fale comigo
-                  <ArrowRight className="h-4 w-4" />
-                </Link>
+                </TrackedCtaLink>
               </div>
             </div>
           </Container>

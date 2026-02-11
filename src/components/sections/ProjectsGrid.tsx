@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { ProjectCase } from "@/content/projects";
+import { event as gaEvent } from "@/lib/gtag";
 
 const filterCategories = [
   "Todos",
@@ -101,7 +102,18 @@ export function ProjectsGrid({ projects }: ProjectsGridProps) {
                   transition={{ duration: 0.35, delay: i * 0.04 }}
                   className="group relative overflow-hidden rounded-lg border border-white/5 bg-[#12161C]/60 transition-all hover:border-[#1DA9C2]/20 hover:shadow-xl hover:shadow-black/20"
                 >
-                  <Link href={`/projetos/${project.slug}`} className="block">
+                  <Link
+                    href={`/projetos/${project.slug}`}
+                    className="block"
+                    onClick={() =>
+                      gaEvent("select_content", {
+                        content_type: "project_case",
+                        content_id: project.slug,
+                        item_name: project.title,
+                        section: "projects_grid",
+                      })
+                    }
+                  >
                     {/* Image */}
                     <div className="relative aspect-[16/10] overflow-hidden">
                       <Image

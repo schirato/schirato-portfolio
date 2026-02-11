@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { ExternalLink } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import { portfolioItems, categories } from "@/content/portfolio";
+import { event as gaEvent } from "@/lib/gtag";
 
 export function Portfolio() {
   const [activeCategory, setActiveCategory] = useState("Todos");
@@ -103,6 +104,14 @@ export function Portfolio() {
                 <Link
                   href={item.href ?? `/projetos/${item.slug}`}
                   className="absolute inset-0 z-10"
+                  onClick={() =>
+                    gaEvent("select_content", {
+                      content_type: "project",
+                      content_id: item.slug,
+                      item_name: item.title,
+                      section: "portfolio_grid",
+                    })
+                  }
                 >
                   <span className="sr-only">Ver projeto: {item.title}</span>
                 </Link>

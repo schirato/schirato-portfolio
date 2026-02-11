@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowRight, ArrowLeft } from "lucide-react";
 import { Container } from "@/components/ui/Container";
 import type { ProjectCase } from "@/content/projects";
+import { event as gaEvent } from "@/lib/gtag";
 
 interface ProjectCtaProps {
   ctaText: string;
@@ -37,6 +38,12 @@ export function ProjectCta({
             <Link
               href="/#contato"
               className="inline-flex items-center gap-2 bg-white px-8 py-3 text-sm font-semibold text-[#1DA9C2] transition-all hover:bg-white/90 hover:shadow-lg"
+              onClick={() =>
+                gaEvent("cta_click", {
+                  section: "project_cta",
+                  label: "fale_comigo",
+                })
+              }
             >
               Fale comigo
               <ArrowRight className="h-4 w-4" />

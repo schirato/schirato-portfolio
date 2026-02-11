@@ -7,6 +7,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { Toast } from "@/components/ui/Toast";
 import type { ContactFormData } from "@/lib/schemas";
+import { event as gaEvent } from "@/lib/gtag";
 
 const subjectOptions = [
   { value: "", label: "Qual o tipo de projeto?" },
@@ -45,6 +46,10 @@ export function Contact() {
           throw new Error(json.error || "Erro ao enviar mensagem");
         }
 
+        gaEvent("generate_lead", {
+          section: "contact_form",
+          subject: data.subject,
+        });
         setToast({
           message: "Mensagem recebida! Retorno em até 24 horas úteis.",
           type: "success",

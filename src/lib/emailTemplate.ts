@@ -18,7 +18,7 @@ const emailTemplate = ({
 <body style="
   margin:0;
   padding:0;
-  background-color:#fff;
+  background-color:#f4f4f5;
   font-family:Arial, Helvetica, sans-serif;
 ">
 
@@ -28,33 +28,34 @@ const emailTemplate = ({
 
       <!-- Card -->
       <table width="600" cellpadding="0" cellspacing="0" style="
-        background:#020617;
-        border-radius:14px;
+        background:#ffffff;
+        border-radius:12px;
         overflow:hidden;
-        box-shadow:0 12px 40px rgba(0,0,0,.45);
+        border:1px solid #e4e4e7;
       ">
 
         <!-- Header -->
         <tr>
           <td style="
-            padding:28px;
+            padding:32px 28px 24px;
             text-align:center;
-            border-bottom:1px solid #1e293b;
+            border-bottom:1px solid #e4e4e7;
           ">
 
             <!-- Logo -->
             <img
               src="https://schirato.net/images/logo-email.png"
               alt="Erik Schirato"
-              width="120"
-              style="display:block; margin:0 auto 12px;"
+              width="110"
+              style="display:block; margin:0 auto 14px;"
             />
 
             <h1 style="
               margin:0;
-              font-size:20px;
-              color:#e5e7eb;
-              letter-spacing:0.4px;
+              font-size:19px;
+              font-weight:700;
+              color:#18181b;
+              letter-spacing:0.2px;
             ">
               Novo contato — Portfólio
             </h1>
@@ -62,9 +63,11 @@ const emailTemplate = ({
             <p style="
               margin:6px 0 0;
               font-size:13px;
-              color:#94a3b8;
+              color:#71717a;
             ">
-              schirato.net
+              <a href="https://schirato.net" style="color:#71717a; text-decoration:none;">
+                schirato.net
+              </a>
             </p>
           </td>
         </tr>
@@ -73,37 +76,43 @@ const emailTemplate = ({
         <tr>
           <td style="
             padding:28px;
-            color:#e5e7eb;
+            color:#27272a;
             font-size:14px;
             line-height:1.6;
           ">
 
-            <p style="margin:0 0 14px;">
-              <strong>Nome</strong><br/>
-              ${name}
-            </p>
-
-            <p style="margin:0 0 14px;">
-              <strong>Email</strong><br/>
-              <a href="mailto:${email}" style="color:#38bdf8; text-decoration:none;">
-                ${email}
-              </a>
-            </p>
-
-            <p style="margin:0 0 20px;">
-              <strong>Assunto</strong><br/>
-              ${subject || "Contato pelo site"}
-            </p>
+            <table width="100%" cellpadding="0" cellspacing="0">
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#a1a1aa;">Nome</span><br/>
+                  <span style="font-size:15px; color:#18181b;">${name}</span>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 16px;">
+                  <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#a1a1aa;">Email</span><br/>
+                  <a href="mailto:${email}" style="font-size:15px; color:#2563eb; text-decoration:none;">
+                    ${email}
+                  </a>
+                </td>
+              </tr>
+              <tr>
+                <td style="padding:0 0 20px;">
+                  <span style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.6px; color:#a1a1aa;">Assunto</span><br/>
+                  <span style="font-size:15px; color:#18181b;">${subject || "Contato pelo site"}</span>
+                </td>
+              </tr>
+            </table>
 
             <!-- Message -->
             <div style="
-              background:#020617;
-              border:1px solid #1e293b;
-              border-radius:10px;
+              background:#fafafa;
+              border:1px solid #e4e4e7;
+              border-radius:8px;
               padding:18px;
-              color:#e5e7eb;
+              color:#27272a;
               font-size:14px;
-              line-height:1.6;
+              line-height:1.7;
             ">
               ${message.replace(/\n/g, "<br/>")}
             </div>
@@ -114,14 +123,15 @@ const emailTemplate = ({
         <!-- Footer -->
         <tr>
           <td style="
-            padding:18px;
+            padding:20px 28px;
             text-align:center;
             font-size:12px;
-            color:#64748b;
-            border-top:1px solid #1e293b;
+            color:#a1a1aa;
+            border-top:1px solid #e4e4e7;
+            background:#fafafa;
           ">
             Enviado através do formulário de contato do site<br/>
-            <strong>Erik Schirato</strong> — UI Developer & Frontend
+            <strong style="color:#52525b;">Erik Schirato</strong> — UI Developer &amp; Frontend
           </td>
         </tr>
 

@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter } from "next/font/google";
+import { RegisterSW } from "@/components/RegisterSW";
 import "./globals.css";
 
 const inter = Inter({
@@ -9,6 +10,10 @@ const inter = Inter({
 });
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://erikschirato.com";
+
+export const viewport: Viewport = {
+  themeColor: "#020617",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(BASE_URL),
@@ -41,7 +46,12 @@ export const metadata: Metadata = {
     apple: "/icons/apple-touch-icon.png",
     shortcut: "/icons/favicon.ico",
   },
-  manifest: "/icons/site.webmanifest",
+  manifest: "/manifest.webmanifest",
+  appleWebApp: {
+    capable: true,
+    statusBarStyle: "black-translucent",
+    title: "Schirato",
+  },
   openGraph: {
     type: "website",
     locale: "pt_BR",
@@ -116,6 +126,7 @@ export default function RootLayout({
   return (
     <html lang="pt-BR" className={inter.variable}>
       <body className="antialiased">
+        <RegisterSW />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

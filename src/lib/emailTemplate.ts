@@ -18,7 +18,7 @@ const emailTemplate = ({
 <body style="
   margin:0;
   padding:0;
-  background-color:#0f172a;
+  background-color:#fff;
   font-family:Arial, Helvetica, sans-serif;
 ">
 

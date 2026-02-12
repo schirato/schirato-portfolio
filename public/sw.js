@@ -45,6 +45,10 @@ self.addEventListener("fetch", (event) => {
   if (request.method !== "GET") return;
   if (request.url.startsWith("chrome-extension://")) return;
 
+  // Skip third-party requests (analytics, ads, etc.)
+  const url = new URL(request.url);
+  if (url.origin !== self.location.origin) return;
+
   // Navigation requests: network-first with offline fallback
   if (request.mode === "navigate") {
     event.respondWith(
